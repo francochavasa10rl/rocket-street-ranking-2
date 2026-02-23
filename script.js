@@ -77,7 +77,7 @@ async function generateImage() {
   }
 
   const teams = document.querySelectorAll("#teams li");
-  let startY = 355;   // 🔥 CAMBIO PEDIDO
+  let startY = 335;   // 🔥 CAMBIO PEDIDO
   const spacing = 65;
 
   for(let i=0;i<teams.length;i++){
