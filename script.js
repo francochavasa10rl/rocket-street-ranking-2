@@ -72,7 +72,7 @@ async function generateImage() {
   }
 
   const teams = document.querySelectorAll("#teams li");
-  let startY=355;
+  let startY=335;
   const spacing=65;
 
   for(let i=0;i<teams.length;i++){
