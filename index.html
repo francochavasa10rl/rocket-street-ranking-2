@@ -4,34 +4,29 @@
   <meta charset="UTF-8">
   <title>Rocket Street Ranking</title>
   <link rel="stylesheet" href="styles.css">
-
-  <link rel="preload" href="fonts/Bourgeois-Bold.ttf" as="font" type="font/ttf" crossorigin>
 </head>
 
 <body>
 
 <header class="site-header">
-  <img src="logo.png" class="site-logo">
-  <h2 class="site-title">ROCKET STREET</h2>
+  <div class="header-center">
+    <img src="logo.png" class="site-logo">
+    <h2 class="site-title">ROCKET STREET</h2>
+  </div>
 </header>
 
 <div class="main-layout">
 
   <!-- IZQUIERDA -->
   <div class="left-panel">
-    <div id="ranking">
-      <h1>ARMA TU POWER RANKING</h1>
 
-      <input type="text" id="personName" placeholder="TU NOMBRE" maxlength="25">
-      <div id="charCounter">0 / 25</div>
+    <h1 class="section-title">ARMA TU POWER RANKING</h1>
 
-      <ul id="teams"></ul>
+    <input type="text" id="personName" placeholder="TU NOMBRE" maxlength="25">
+    <div id="charCounter">0 / 25</div>
 
-      <div class="action-buttons">
-        <button id="generateBtn">GENERAR PREVIEW</button>
-        <button id="downloadBtn">DESCARGAR IMAGEN</button>
-      </div>
-    </div>
+    <ul id="teams"></ul>
+
   </div>
 
   <!-- DERECHA -->
@@ -39,17 +34,19 @@
 
     <div class="preview-box">
       <h3>Vista previa</h3>
-      <img id="previewImage" alt="Preview">
+      <img id="previewImage">
     </div>
 
     <div class="share-buttons">
-      <a id="twitterShare" target="_blank" class="btn twitter">
-        Compartir en X
-      </a>
+
+      <button id="shareBtn" class="btn twitter">
+        Descargar y Compartir en X
+      </button>
 
       <a href="https://discord.gg/zWMaC4Qwak" target="_blank" class="btn discord">
         Unirse al Discord
       </a>
+
     </div>
 
   </div>
