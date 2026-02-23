@@ -1,58 +1,62 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Rocket Street - Power Ranking</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <title>Rocket Street Ranking</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-  <header class="top-logo">
-    <img src="logo.png" alt="Rocket Street">
-  </header>
+<header class="site-header">
+  <div class="header-center">
+    <img src="logo.png" class="site-logo">
+    <h2 class="site-title">ROCKET STREET</h2>
+  </div>
+</header>
 
-  <div class="main-wrapper">
+<div class="main-layout">
 
-    <!-- IZQUIERDA -->
-    <div class="left-panel">
+  <div class="left-panel">
 
-      <h2>ARMA TU POWER RANKING</h2>
+    <h1 class="section-title">ARMA TU POWER RANKING</h1>
 
-      <div class="name-container">
-        <input 
-          type="text" 
-          id="username" 
-          placeholder="TU NOMBRE"
-          maxlength="20"
-        >
-        <div id="charCount">0 / 20</div>
-      </div>
+    <input type="text" id="personName" placeholder="TU NOMBRE" maxlength="25">
+    <div id="charCounter">0 / 25</div>
 
-      <div id="ranking-list" class="ranking-list"></div>
+    <ul id="teams"></ul>
 
+  </div>
+
+  <div class="right-panel">
+
+    <div class="preview-box">
+      <h3>Vista previa</h3>
+      <img id="previewImage">
     </div>
 
-    <!-- DERECHA -->
-    <div class="right-panel">
+    <div class="share-buttons">
 
-      <h3>Vista previa</h3>
+      <button id="downloadBtn" class="btn download">
+        Descargar imagen
+      </button>
 
-      <div class="preview-box">
-        <canvas id="previewCanvas" width="1080" height="1350"></canvas>
-      </div>
+      <button id="shareBtn" class="btn twitter">
+        Descargar y Compartir en X
+      </button>
 
-      <div class="buttons">
-        <button id="downloadBtn">Descargar imagen</button>
-        <button id="tweetBtn">Descargar y Compartir en X</button>
-        <a href="https://discord.gg/zWMaC4Qwak" target="_blank">
-          <button class="discord">Unirse al Discord</button>
-        </a>
-      </div>
+      <a href="https://discord.gg/zWMaC4Qwak" target="_blank" class="btn discord">
+        Unirse al Discord
+      </a>
 
     </div>
 
   </div>
 
-  <script src="script.js"></script>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<script src="script.js"></script>
+
 </body>
 </html>
