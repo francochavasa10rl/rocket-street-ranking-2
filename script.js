@@ -67,7 +67,7 @@ async function generateImage() {
   const bg = await loadImage("background.png");
   ctx.drawImage(bg,0,0,canvas.width,canvas.height);
 
-  let name = document.getElementById("personName").value.slice(0,25);
+  let name = document.getElementById("personName").value.slice(0,20);
 
   if(name){
     ctx.fillStyle="#bbff00";
@@ -98,12 +98,28 @@ async function generateImage() {
   document.getElementById("previewImage").src=canvas.toDataURL("image/png");
 }
 
-document.getElementById("personName").addEventListener("input",function(){
-  document.getElementById("charCounter").textContent=`${this.value.length} / 20`;
+/* CONTADOR + LIMITE ROJO */
+
+document.getElementById("personName").addEventListener("input", function(){
+
+  const counter = document.getElementById("charCounter");
+  counter.textContent = `${this.value.length} / 25`;
+
+  if(this.value.length >= 25){
+    counter.classList.add("limit");
+    this.classList.add("limit");
+  } else {
+    counter.classList.remove("limit");
+    this.classList.remove("limit");
+  }
+
   generateImage();
 });
 
+/* DESCARGAR + ABRIR X */
+
 document.getElementById("shareBtn").addEventListener("click",()=>{
+
   const imageData = canvas.toDataURL("image/png");
 
   const link=document.createElement("a");
