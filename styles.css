@@ -36,6 +36,7 @@ body {
 }
 
 /* PANEL IZQUIERDO */
+
 .left-panel {
   flex: 1;
   display: flex;
@@ -55,12 +56,21 @@ body {
   border: none;
   text-align: center;
   font-family: 'BourgeoisBold';
+  transition: 0.2s;
+}
+
+#personName.limit {
+  border: 2px solid #a52019;
 }
 
 #charCounter {
   font-size: 12px;
   color: #aaa;
   margin-bottom: 15px;
+}
+
+#charCounter.limit {
+  color: #a52019;
 }
 
 #teams {
@@ -84,7 +94,9 @@ body {
   cursor: grab;
 }
 
-.position { width: 35px; }
+.position {
+  width: 35px;
+}
 
 .logo-box {
   width: 28px;
@@ -103,6 +115,7 @@ body {
 }
 
 /* PANEL DERECHO */
+
 .right-panel {
   flex: 1;
   display: flex;
