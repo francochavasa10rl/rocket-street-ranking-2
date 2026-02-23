@@ -13,7 +13,7 @@ body {
 }
 
 .site-header {
-  padding: 10px 0; /* reducido */
+  padding: 8px 0;
   display: flex;
   justify-content: center;
 }
@@ -21,17 +21,17 @@ body {
 .header-center {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
-.site-logo { height: 40px; }
-.site-title { font-size: 20px; letter-spacing: 2px; }
+.site-logo { height: 42px; }
+.site-title { font-size: 22px; letter-spacing: 2px; }
 
 .main-layout {
   display: flex;
-  height: calc(100vh - 70px);
-  padding: 10px 30px 20px 30px; /* reducido */
-  gap: 30px; /* menos espacio */
+  height: calc(100vh - 65px);
+  padding: 8px 30px 15px 30px;
+  gap: 30px;
 }
 
 /* PANEL IZQUIERDO */
@@ -44,18 +44,18 @@ body {
 }
 
 .section-title {
-  margin: 5px 0 8px 0; /* reducido */
-  font-size: 24px; /* un poco más chico */
+  margin: 5px 0 8px 0;
+  font-size: 26px;
 }
 
 #personName {
-  width: 220px;
-  padding: 6px;
+  width: 240px;
+  padding: 8px;
+  font-size: 15px;
   border-radius: 6px;
   border: none;
   text-align: center;
   font-family: 'BourgeoisBold';
-  transition: 0.2s;
 }
 
 #personName.limit {
@@ -63,49 +63,52 @@ body {
 }
 
 #charCounter {
-  font-size: 12px;
+  font-size: 13px;
   color: #aaa;
-  margin-bottom: 10px; /* reducido */
+  margin-bottom: 10px;
 }
 
 #charCounter.limit {
   color: #a52019;
 }
 
+/* 🔥 TEAMS MÁS GRANDES */
+
 #teams {
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px; /* más compacto */
+  gap: 8px;
 }
 
 #teams li {
   background: #334155;
-  padding: 6px 10px;
+  padding: 10px 14px;
   display: flex;
   align-items: center;
-  border-radius: 8px;
-  font-size: 13px;
+  border-radius: 10px;
+  font-size: 16px; /* MÁS GRANDE */
   cursor: grab;
 }
 
 .position {
-  width: 35px;
+  width: 45px;
+  font-size: 16px;
 }
 
 .logo-box {
-  width: 28px;
-  height: 28px;
+  width: 34px;
+  height: 34px;
   background: #1e293b;
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 8px;
+  margin-right: 12px;
 }
 
 .logo-box img {
@@ -119,32 +122,36 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .preview-box {
   background: #111827;
-  padding: 12px; /* reducido */
+  padding: 10px;
   border-radius: 16px;
   text-align: center;
+  margin-bottom: 10px; /* 🔥 menos espacio con botones */
 }
 
 .preview-box img {
   width: 100%;
-  max-height: 460px; /* reducido */
+  max-height: 470px;
   object-fit: contain;
   border-radius: 12px;
 }
 
+/* 🔥 BOTONES MÁS GRANDES Y MENOS ESPACIO */
+
 .share-buttons {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* menos espacio */
+  gap: 8px; /* menos espacio entre botones */
 }
 
 .btn {
-  padding: 12px;
-  border-radius: 10px;
+  padding: 16px; /* MÁS ALTOS */
+  font-size: 16px; /* MÁS LEGIBLE */
+  border-radius: 12px;
   border: none;
   font-weight: bold;
   cursor: pointer;
@@ -152,13 +159,13 @@ body {
   transition: 0.2s;
 }
 
-.twitter {
-  background: #1DA1F2;
+.download {
+  background: #2d8cff;
   color: white;
 }
 
-.download {
-  background: #2d8cff;
+.twitter {
+  background: #1DA1F2;
   color: white;
 }
 
@@ -171,5 +178,7 @@ body {
 }
 
 .btn:hover {
+  transform: scale(1.03);
+}
   transform: scale(1.03);
 }
