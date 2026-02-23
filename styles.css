@@ -1,60 +1,78 @@
-/* FUENTES */
+/* 1. FUENTES Y VARIABLES */
 @font-face {
     font-family: 'BourgeoisBold';
     src: url('fonts/Bourgeois-Bold.ttf') format('truetype');
 }
 
-/* VARIABLES DE DISEÑO ROCKET STREET */
 :root {
-    --rs-bg-dark: #0b111d;      /* Fondo ultra oscuro */
-    --rs-bg-panel: #162031;    /* Fondo de los ítems */
-    --rs-accent: #bbff00;      /* El verde lima/neón de tu canvas */
-    --rs-border: #2d3a4f;      /* Bordes sutiles */
-    --rs-blue-link: #2d8cff;   /* Azul para botones */
+    --rs-black: #05070a;      /* Fondo base de la web */
+    --rs-dark-grey: #0d1117;  /* Paneles secundarios */
+    --rs-panel: #161b22;     /* Fondo de los rectángulos de la lista */
+    --rs-neon: #bbff00;      /* Verde neón / Lima */
+    --rs-border: #30363d;    /* Bordes de la interfaz */
+    --rs-blue: #2d8cff;      /* Azul acento */
+    --font-main: 'BourgeoisBold', sans-serif;
 }
 
-/* ESTRUCTURA BASE */
+/* 2. RESET Y ESTRUCTURA BASE */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
-    font-family: 'BourgeoisBold', sans-serif;
-    background: linear-gradient(135deg, #0b111d, #1a2436);
-    background-attachment: fixed; /* FIX: El fondo no cambia al scrollear */
+    padding: 0;
+    font-family: var(--font-main);
+    background-color: var(--rs-black);
+    background-image: radial-gradient(circle at top right, #161b22, #05070a);
+    background-attachment: fixed; /* FIX: Fondo no cambia al scrollear */
     color: white;
     min-height: 100vh;
     overflow-x: hidden;
 }
 
-/* HEADER */
+/* 3. HEADER */
 .site-header {
+    width: 100%;
     padding: 15px 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rs-border);
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid var(--rs-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .header-center {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
 }
 
-.site-logo { height: 40px; }
-.site-title { 
-    font-size: 24px; 
-    letter-spacing: 3px; 
+.site-logo {
+    height: 35px;
+}
+
+.site-title {
     margin: 0;
+    font-size: 24px;
+    letter-spacing: 3px;
+    font-weight: normal;
 }
 
-/* LAYOUT PRINCIPAL */
+/* 4. LAYOUT PRINCIPAL */
 .main-layout {
     display: flex;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 20px 30px;
+    padding: 30px 50px;
     gap: 40px;
+    min-height: calc(100vh - 70px);
 }
 
-/* PANEL IZQUIERDO (Lista de Equipos) */
+/* 5. PANEL IZQUIERDO (CONSTRUCTOR) */
 .left-panel {
     flex: 1.2;
     display: flex;
@@ -63,88 +81,98 @@ body {
 }
 
 .section-title {
-    margin-bottom: 15px;
     font-size: 32px;
+    margin: 0 0 15px 0;
     letter-spacing: 1px;
-    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(187, 255, 0, 0.2);
 }
 
 #personName {
-    width: 280px;
+    width: 300px;
     padding: 12px;
     font-size: 18px;
-    background: #05080f;
+    background: #000;
     border: 1px solid var(--rs-border);
     border-radius: 4px;
-    color: var(--rs-accent);
+    color: var(--rs-neon);
     text-align: center;
-    font-family: 'BourgeoisBold';
+    font-family: var(--font-main);
     text-transform: uppercase;
-    margin-bottom: 5px;
+    transition: 0.2s;
 }
 
 #personName:focus {
     outline: none;
-    border-color: var(--rs-accent);
+    border-color: var(--rs-neon);
+    box-shadow: 0 0 10px rgba(187, 255, 0, 0.3);
 }
 
-#personName.limit { border-color: #a52019; }
+#personName.limit {
+    border-color: #a52019;
+}
 
 #charCounter {
-    font-size: 13px;
-    color: #64748b;
-    margin-bottom: 20px;
+    font-size: 14px;
+    color: #6e7681;
+    margin: 8px 0 25px 0;
 }
 
-#charCounter.limit { color: #a52019; }
+#charCounter.limit {
+    color: #f85149;
+}
 
-/* LISTA DE EQUIPOS - ESTILO FINO Y PRO */
+/* 6. LISTA DE EQUIPOS (TEAMS) */
 #teams {
     width: 100%;
-    max-width: 500px;
+    max-width: 550px;
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 6px; /* Espacio reducido entre rectángulos */
+    gap: 6px; /* Espacio reducido entre equipos */
 }
 
 #teams li {
-    background: var(--rs-bg-panel);
-    padding: 6px 16px; /* FIX: Rectángulos más finitos verticalmente */
+    background: var(--rs-panel);
+    border: 1px solid var(--rs-border);
+    border-left: 5px solid var(--rs-neon); /* LÍNEA VERDE NEÓN */
+    padding: 6px 20px; /* Rectángulos más finitos */
     display: flex;
     align-items: center;
-    border: 1px solid var(--rs-border);
-    border-left: 4px solid var(--rs-accent); /* Detalle de color lateral */
-    border-radius: 0 4px 4px 0;
-    font-size: 20px; /* Letra más grande y legible */
+    border-radius: 0 6px 6px 0;
+    font-size: 20px;
     cursor: grab;
-    transition: transform 0.2s, background 0.2s;
+    transition: all 0.2s ease;
+    user-select: none;
 }
 
-#teams li:active { cursor: grabbing; }
 #teams li:hover {
-    background: #1e293b;
-    transform: translateX(4px);
+    background: #1c2128;
+    border-color: #444c56;
+    transform: translateX(8px);
+}
+
+#teams li:active {
+    cursor: grabbing;
 }
 
 .position {
-    width: 45px;
-    font-size: 20px;
-    color: var(--rs-accent);
+    width: 50px;
+    font-size: 22px;
+    color: var(--rs-neon);
     font-weight: bold;
 }
 
 .logo-box {
-    width: 32px;
-    height: 32px;
-    background: #05080f;
+    width: 35px;
+    height: 35px;
+    background: rgba(0,0,0,0.3);
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 15px;
+    margin-right: 20px;
 }
 
 .logo-box img {
@@ -155,44 +183,45 @@ body {
 
 .team-name {
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* PANEL DERECHO (Vista Previa) */
+/* 7. PANEL DERECHO (PREVIEW) */
 .right-panel {
     flex: 1;
     display: flex;
     flex-direction: column;
-    /* FIX: Alineado con el primer rectángulo de la lista (#1) */
-    margin-top: 105px; 
+    /* Alineación con el primer equipo de la lista */
+    margin-top: 102px; 
 }
 
 .preview-box {
-    background: #05080f;
+    background: #000;
     padding: 15px;
     border: 1px solid var(--rs-border);
-    border-radius: 8px;
+    border-radius: 12px;
     text-align: center;
     margin-bottom: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
 }
 
 .preview-box h3 {
-    margin-top: 0;
+    margin: 0 0 12px 0;
     font-size: 14px;
-    color: #64748b;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 10px;
+    color: #6e7681;
 }
 
 .preview-box img {
     width: 100%;
-    max-height: 500px;
+    height: auto;
+    max-height: 520px;
+    border-radius: 6px;
     object-fit: contain;
-    border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* BOTONES DE ACCIÓN */
+/* 8. BOTONES Y ACCIONES */
 .share-buttons {
     display: flex;
     flex-direction: column;
@@ -200,48 +229,54 @@ body {
 }
 
 .btn {
-    padding: 18px; /* Botones más altos */
+    padding: 18px;
+    font-family: var(--font-main);
     font-size: 20px; /* Letra más grande */
-    text-transform: uppercase; /* FIX: Texto en MAYÚSCULAS */
-    border-radius: 4px;
-    border: none;
     font-weight: bold;
+    text-transform: uppercase; /* MAYÚSCULAS */
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
-    font-family: 'BourgeoisBold';
     transition: 0.3s;
     text-decoration: none;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     letter-spacing: 1px;
 }
 
 .download {
-    background: white;
-    color: black;
+    background: #ffffff;
+    color: #000;
 }
 
 .twitter {
     background: #1DA1F2;
-    color: white;
+    color: #ffffff;
 }
 
 .discord {
     background: #5865F2;
-    color: white;
+    color: #ffffff;
 }
 
 .btn:hover {
-    filter: brightness(1.2);
-    transform: translateY(-2px);
+    filter: brightness(1.1);
+    transform: scale(1.02);
 }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
+/* 9. RESPONSIVE (MÓVILES) */
+@media (max-width: 1100px) {
     .main-layout {
         flex-direction: column;
+        padding: 20px;
     }
-    .right-panel {
-        margin-top: 20px;
+    .left-panel, .right-panel {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 0;
+    }
+    #teams {
+        max-width: 100%;
     }
 }
