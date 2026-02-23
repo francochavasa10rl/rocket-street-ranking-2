@@ -23,6 +23,7 @@ function renderTeams() {
   teamsUl.innerHTML = "";
   teamsData.forEach((team, index) => {
     const li = document.createElement("li");
+    // 🔥 Reagregadas las comillas invertidas (backticks) para que funcionen las variables
     li.innerHTML = `
       <span class="position">#${index+1}</span>
       <div class="logo-box"><img src="${team.logo}"></div>
@@ -31,6 +32,7 @@ function renderTeams() {
     teamsUl.appendChild(li);
   });
 }
+
 renderTeams();
 
 new Sortable(teamsUl, {
@@ -61,14 +63,11 @@ function loadImage(src) {
 }
 
 async function generateImage() {
-
   ctx.clearRect(0,0,canvas.width,canvas.height);
-
   const bg = await loadImage("background.png");
   ctx.drawImage(bg,0,0,canvas.width,canvas.height);
 
   let name = document.getElementById("personName").value.slice(0,25);
-
   if(name){
     ctx.fillStyle="#bbff00";
     ctx.textAlign="center";
@@ -77,34 +76,28 @@ async function generateImage() {
   }
 
   const teams = document.querySelectorAll("#teams li");
-  let startY = 335;   // 🔥 CAMBIO PEDIDO
+  let startY = 335;   
   const spacing = 65;
 
   for(let i=0;i<teams.length;i++){
     const teamName=teams[i].querySelector(".team-name").textContent;
     const logoSrc=teams[i].querySelector("img").src;
     const logo=await loadImage(logoSrc);
-
     ctx.drawImage(logo,210,startY-35,45,45);
-
     ctx.fillStyle="white";
     ctx.textAlign="left";
     ctx.font="bold 36px BourgeoisBold";
     ctx.fillText(teamName.toUpperCase(),300,startY);
-
     startY+=spacing;
   }
-
   document.getElementById("previewImage").src=canvas.toDataURL("image/png");
 }
 
 /* CONTADOR + LIMITE ROJO */
-
 document.getElementById("personName").addEventListener("input", function(){
-
   const counter = document.getElementById("charCounter");
   counter.textContent = `${this.value.length} / 25`;
-
+  
   if(this.value.length >= 25){
     counter.classList.add("limit");
     this.classList.add("limit");
@@ -112,16 +105,12 @@ document.getElementById("personName").addEventListener("input", function(){
     counter.classList.remove("limit");
     this.classList.remove("limit");
   }
-
   generateImage();
 });
 
 /* SOLO DESCARGAR */
-
 document.getElementById("downloadBtn").addEventListener("click",()=>{
-
   const imageData = canvas.toDataURL("image/png");
-
   const link=document.createElement("a");
   link.download="rocket-street-power-ranking.png";
   link.href=imageData;
@@ -129,11 +118,8 @@ document.getElementById("downloadBtn").addEventListener("click",()=>{
 });
 
 /* DESCARGAR + ABRIR X */
-
 document.getElementById("shareBtn").addEventListener("click",()=>{
-
   const imageData = canvas.toDataURL("image/png");
-
   const link=document.createElement("a");
   link.download="rocket-street-power-ranking.png";
   link.href=imageData;
