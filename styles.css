@@ -1,178 +1,247 @@
+/* FUENTES */
 @font-face {
-  font-family: 'BourgeoisBold';
-  src: url('fonts/Bourgeois-Bold.ttf') format('truetype');
+    font-family: 'BourgeoisBold';
+    src: url('fonts/Bourgeois-Bold.ttf') format('truetype');
 }
 
+/* VARIABLES DE DISEÑO ROCKET STREET */
+:root {
+    --rs-bg-dark: #0b111d;      /* Fondo ultra oscuro */
+    --rs-bg-panel: #162031;    /* Fondo de los ítems */
+    --rs-accent: #bbff00;      /* El verde lima/neón de tu canvas */
+    --rs-border: #2d3a4f;      /* Bordes sutiles */
+    --rs-blue-link: #2d8cff;   /* Azul para botones */
+}
+
+/* ESTRUCTURA BASE */
 body {
-  margin: 0;
-  font-family: 'BourgeoisBold', sans-serif;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  background-attachment: fixed; /* 🔥 FIX: Mantiene el fondo quieto al hacer scroll */
-  color: white;
-  min-height: 100vh; /* 🔥 FIX: Permite que el cuerpo crezca sin cortar el fondo */
-  overflow-x: hidden;
+    margin: 0;
+    font-family: 'BourgeoisBold', sans-serif;
+    background: linear-gradient(135deg, #0b111d, #1a2436);
+    background-attachment: fixed; /* FIX: El fondo no cambia al scrollear */
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
+/* HEADER */
 .site-header {
-  padding: 8px 0;
-  display: flex;
-  justify-content: center;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid var(--rs-border);
 }
 
 .header-center {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.site-logo { height: 42px; }
-.site-title { font-size: 22px; letter-spacing: 2px; }
+.site-logo { height: 40px; }
+.site-title { 
+    font-size: 24px; 
+    letter-spacing: 3px; 
+    margin: 0;
+}
 
+/* LAYOUT PRINCIPAL */
 .main-layout {
-  display: flex;
-  min-height: calc(100vh - 65px);
-  padding: 8px 30px 15px 30px;
-  gap: 30px;
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 30px;
+    gap: 40px;
 }
 
-/* PANEL IZQUIERDO */
+/* PANEL IZQUIERDO (Lista de Equipos) */
 .left-panel {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .section-title {
-  margin: 5px 0 8px 0;
-  font-size: 26px;
+    margin-bottom: 15px;
+    font-size: 32px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 #personName {
-  width: 240px;
-  padding: 8px;
-  font-size: 15px;
-  border-radius: 6px;
-  border: none;
-  text-align: center;
-  font-family: 'BourgeoisBold';
+    width: 280px;
+    padding: 12px;
+    font-size: 18px;
+    background: #05080f;
+    border: 1px solid var(--rs-border);
+    border-radius: 4px;
+    color: var(--rs-accent);
+    text-align: center;
+    font-family: 'BourgeoisBold';
+    text-transform: uppercase;
+    margin-bottom: 5px;
 }
 
-#personName.limit { border: 2px solid #a52019; }
+#personName:focus {
+    outline: none;
+    border-color: var(--rs-accent);
+}
+
+#personName.limit { border-color: #a52019; }
 
 #charCounter {
-  font-size: 13px;
-  color: #aaa;
-  margin-bottom: 10px;
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 20px;
 }
 
 #charCounter.limit { color: #a52019; }
 
-/* 🔥 TEAMS: MÁS FINITOS Y LETRA MÁS GRANDE */
+/* LISTA DE EQUIPOS - ESTILO FINO Y PRO */
 #teams {
-  width: 100%;
-  max-width: 560px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px; /* Menos espacio entre equipos */
+    width: 100%;
+    max-width: 500px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* Espacio reducido entre rectángulos */
 }
 
 #teams li {
-  background: #334155;
-  padding: 6px 14px; /* 🔥 Relleno vertical reducido para hacerlos menos largos */
-  display: flex;
-  align-items: center;
-  border-radius: 8px;
-  font-size: 20px; /* 🔥 Letra más grande */
-  cursor: grab;
+    background: var(--rs-bg-panel);
+    padding: 6px 16px; /* FIX: Rectángulos más finitos verticalmente */
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--rs-border);
+    border-left: 4px solid var(--rs-accent); /* Detalle de color lateral */
+    border-radius: 0 4px 4px 0;
+    font-size: 20px; /* Letra más grande y legible */
+    cursor: grab;
+    transition: transform 0.2s, background 0.2s;
+}
+
+#teams li:active { cursor: grabbing; }
+#teams li:hover {
+    background: #1e293b;
+    transform: translateX(4px);
 }
 
 .position {
-  width: 45px;
-  font-size: 20px; /* 🔥 Letra más grande */
+    width: 45px;
+    font-size: 20px;
+    color: var(--rs-accent);
+    font-weight: bold;
 }
 
 .logo-box {
-  width: 28px; /* Un poco más chico para encajar en el rectángulo más fino */
-  height: 28px;
-  background: #1e293b;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 12px;
+    width: 32px;
+    height: 32px;
+    background: #05080f;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
 }
 
 .logo-box img {
-  max-width: 100%;
-  max-height: 100%;
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
 }
 
-/* PANEL DERECHO */
+.team-name {
+    text-transform: uppercase;
+}
+
+/* PANEL DERECHO (Vista Previa) */
 .right-panel {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin-top: 93px; /* 🔥 FIX: Alinea este panel con el inicio del rectángulo #1 */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* FIX: Alineado con el primer rectángulo de la lista (#1) */
+    margin-top: 105px; 
 }
 
 .preview-box {
-  background: #111827;
-  padding: 10px;
-  border-radius: 16px;
-  text-align: center;
-  margin-bottom: 10px;
+    background: #05080f;
+    padding: 15px;
+    border: 1px solid var(--rs-border);
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.preview-box h3 {
+    margin-top: 0;
+    font-size: 14px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
 }
 
 .preview-box img {
-  width: 100%;
-  max-height: 470px;
-  object-fit: contain;
-  border-radius: 12px;
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* 🔥 BOTONES: LETRA GRANDE Y MAYÚSCULAS */
+/* BOTONES DE ACCIÓN */
 .share-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .btn {
-  padding: 16px;
-  font-size: 20px; /* 🔥 Letra más grande */
-  text-transform: uppercase; /* 🔥 Todo en MAYÚSCULA */
-  border-radius: 12px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  font-family: 'BourgeoisBold';
-  transition: 0.2s;
-  text-decoration: none; /* Arregla el enlace de Discord */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    padding: 18px; /* Botones más altos */
+    font-size: 20px; /* Letra más grande */
+    text-transform: uppercase; /* FIX: Texto en MAYÚSCULAS */
+    border-radius: 4px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'BourgeoisBold';
+    transition: 0.3s;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 1px;
 }
 
 .download {
-  background: #2d8cff;
-  color: white;
+    background: white;
+    color: black;
 }
 
 .twitter {
-  background: #1DA1F2;
-  color: white;
+    background: #1DA1F2;
+    color: white;
 }
 
 .discord {
-  background: #5865F2;
-  color: white;
+    background: #5865F2;
+    color: white;
 }
 
 .btn:hover {
-  transform: scale(1.03);
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .main-layout {
+        flex-direction: column;
+    }
+    .right-panel {
+        margin-top: 20px;
+    }
 }
