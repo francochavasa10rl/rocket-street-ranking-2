@@ -1,135 +1,99 @@
 const teamsData = [
-  { name:"TSM", logo:"logos/tsm.png" },
-  { name:"FURIA", logo:"logos/furia.png" },
-  { name:"SHOPIFY REBELLION", logo:"logos/shopify.png" },
-  { name:"NRG", logo:"logos/nrg.png" },
-  { name:"VITALITY", logo:"logos/vitality.png" },
-  { name:"KARMINE CORP", logo:"logos/kc.png" },
-  { name:"FALCONS", logo:"logos/falcons.png" },
-  { name:"SPACESTATION", logo:"logos/ssg.png" },
-  { name:"GENTLEMATES", logo:"logos/gentlemates.png" },
-  { name:"PWR", logo:"logos/pwr.png" },
-  { name:"TWISTED MINDS", logo:"logos/twisted.png" },
-  { name:"MIBR", logo:"logos/mibr.png" },
-  { name:"GEEKAY ESPORTS", logo:"logos/geekay.png" },
-  { name:"NINJAS IN PYJAMAS", logo:"logos/nip.png" },
-  { name:"VIRTUS.PRO", logo:"logos/vp.png" },
-  { name:"FIVE FEARS", logo:"logos/5f.png" }
+  "TSM", "FURIA", "SHOPIFY REBELLION", "NRG", "VITALITY",
+  "KARMINE CORP", "FALCONS", "SPACESTATION", "GENTLEMATES",
+  "PWR", "TWISTED MINDS", "MIBR", "GEEKAY ESPORTS",
+  "NINJAS IN PYJAMAS", "VIRTUS.PRO", "FIVE FEARS"
 ];
 
-const teamsUl = document.getElementById("teams");
-
-function renderTeams() {
-  teamsUl.innerHTML = "";
-  teamsData.forEach((team, index) => {
-    const li = document.createElement("li");
-    li.innerHTML = `
-      <span class="position">#${index+1}</span>
-      <div class="logo-box"><img src="${team.logo}"></div>
-      <span class="team-name">${team.name}</span>
-    `;
-    teamsUl.appendChild(li);
-  });
-}
-renderTeams();
-
-new Sortable(teamsUl, {
-  animation: 150,
-  onEnd: () => {
-    updatePositions();
-    generateImage();
-  }
-});
-
-function updatePositions(){
-  document.querySelectorAll("#teams li").forEach((item, i) => {
-    item.querySelector(".position").textContent = `#${i+1}`;
-  });
-}
-
-const canvas = document.createElement("canvas");
+const teamsList = document.getElementById("teams");
+const canvas = document.getElementById("previewCanvas");
 const ctx = canvas.getContext("2d");
-canvas.width = 1080;
-canvas.height = 1350;
+const nameInput = document.getElementById("personName");
+const charCounter = document.getElementById("charCounter");
 
-function loadImage(src) {
-  return new Promise(resolve=>{
-    const img = new Image();
-    img.onload = ()=> resolve(img);
-    img.src = src;
+/* Crear lista */
+teamsData.forEach(team => {
+  const li = document.createElement("li");
+  li.textContent = team;
+  teamsList.appendChild(li);
+});
+
+/* Sortable */
+new Sortable(teamsList, {
+  animation: 150,
+  onSort: updateCanvas
+});
+
+/* Contador */
+nameInput.addEventListener("input", () => {
+  const length = nameInput.value.length;
+  charCounter.textContent = `${length}/25`;
+
+  if (length >= 25) {
+    charCounter.classList.add("limit");
+  } else {
+    charCounter.classList.remove("limit");
+  }
+
+  updateCanvas();
+});
+
+/* Dibujar */
+function updateCanvas() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "black";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "white";
+  ctx.font = "bold 40px Arial";
+  ctx.fillText("POWER RANKINGS", 300, 120);
+
+  // Nombre persona
+  ctx.font = "bold 36px Arial";
+  ctx.fillText(nameInput.value.toUpperCase(), 538, 255);
+
+  // Equipos
+  ctx.font = "28px Arial";
+
+  let startY = 355;
+
+  [...teamsList.children].forEach((li, index) => {
+    ctx.fillText(`#${index + 1} ${li.textContent}`, 200, startY + (index * 50));
   });
 }
 
-async function generateImage() {
-
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  const bg = await loadImage("background.png");
-  ctx.drawImage(bg,0,0,canvas.width,canvas.height);
-
-  let name = document.getElementById("personName").value.slice(0,20);
-
-  if(name){
-    ctx.fillStyle="#bbff00";
-    ctx.textAlign="center";
-    ctx.font="bold 60px BourgeoisBold";
-    ctx.fillText(name.toUpperCase(),538,255);
-  }
-
-  const teams = document.querySelectorAll("#teams li");
-  let startY=335;
-  const spacing=65;
-
-  for(let i=0;i<teams.length;i++){
-    const teamName=teams[i].querySelector(".team-name").textContent;
-    const logoSrc=teams[i].querySelector("img").src;
-    const logo=await loadImage(logoSrc);
-
-    ctx.drawImage(logo,210,startY-35,45,45);
-
-    ctx.fillStyle="white";
-    ctx.textAlign="left";
-    ctx.font="bold 36px BourgeoisBold";
-    ctx.fillText(teamName.toUpperCase(),300,startY);
-
-    startY+=spacing;
-  }
-
-  document.getElementById("previewImage").src=canvas.toDataURL("image/png");
+/* Descargar imagen */
+function downloadImage() {
+  const link = document.createElement("a");
+  link.download = "rocket-street-power-ranking.png";
+  link.href = canvas.toDataURL();
+  link.click();
 }
 
-/* CONTADOR + LIMITE ROJO */
+/* Descargar solo */
+document.getElementById("downloadOnlyBtn")
+  .addEventListener("click", downloadImage);
 
-document.getElementById("personName").addEventListener("input", function(){
+/* Descargar + compartir */
+document.getElementById("downloadShareBtn")
+  .addEventListener("click", () => {
+    downloadImage();
 
-  const counter = document.getElementById("charCounter");
-  counter.textContent = `${this.value.length} / 25`;
+    const tweetText = encodeURIComponent(
+      "Estos son mis Power Rankings 🚀 @RocketStreet"
+    );
 
-  if(this.value.length >= 25){
-    counter.classList.add("limit");
-    this.classList.add("limit");
-  } else {
-    counter.classList.remove("limit");
-    this.classList.remove("limit");
-  }
+    window.open(
+      `https://twitter.com/intent/tweet?text=${tweetText}`,
+      "_blank"
+    );
+  });
 
-  generateImage();
-});
+/* Discord */
+document.getElementById("discordBtn")
+  .addEventListener("click", () => {
+    window.open("https://discord.gg/zWMaC4Qwak", "_blank");
+  });
 
-/* DESCARGAR + ABRIR X */
-
-document.getElementById("shareBtn").addEventListener("click",()=>{
-
-  const imageData = canvas.toDataURL("image/png");
-
-  const link=document.createElement("a");
-  link.download="rocket-street-power-ranking.png";
-  link.href=imageData;
-  link.click();
-
-  const tweetText="Estos son mis Power Rankings 🚀 @RocketStreet";
-  const twitterUrl=`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
-  window.open(twitterUrl, "_blank");
-});
-
-generateImage();
+updateCanvas();
