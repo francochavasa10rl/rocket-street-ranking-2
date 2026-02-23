@@ -7,8 +7,9 @@ body {
   margin: 0;
   font-family: 'BourgeoisBold', sans-serif;
   background: linear-gradient(135deg, #0f172a, #1e293b);
+  background-attachment: fixed; /* 🔥 FIX: Mantiene el fondo quieto al hacer scroll */
   color: white;
-  height: 100vh;
+  min-height: 100vh; /* 🔥 FIX: Permite que el cuerpo crezca sin cortar el fondo */
   overflow-x: hidden;
 }
 
@@ -29,13 +30,12 @@ body {
 
 .main-layout {
   display: flex;
-  height: calc(100vh - 65px);
+  min-height: calc(100vh - 65px);
   padding: 8px 30px 15px 30px;
   gap: 30px;
 }
 
 /* PANEL IZQUIERDO */
-
 .left-panel {
   flex: 1;
   display: flex;
@@ -58,9 +58,7 @@ body {
   font-family: 'BourgeoisBold';
 }
 
-#personName.limit {
-  border: 2px solid #a52019;
-}
+#personName.limit { border: 2px solid #a52019; }
 
 #charCounter {
   font-size: 13px;
@@ -68,12 +66,9 @@ body {
   margin-bottom: 10px;
 }
 
-#charCounter.limit {
-  color: #a52019;
-}
+#charCounter.limit { color: #a52019; }
 
-/* 🔥 TEAMS MÁS GRANDES */
-
+/* 🔥 TEAMS: MÁS FINITOS Y LETRA MÁS GRANDE */
 #teams {
   width: 100%;
   max-width: 560px;
@@ -82,27 +77,27 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px; /* Menos espacio entre equipos */
 }
 
 #teams li {
   background: #334155;
-  padding: 10px 14px;
+  padding: 6px 14px; /* 🔥 Relleno vertical reducido para hacerlos menos largos */
   display: flex;
   align-items: center;
-  border-radius: 10px;
-  font-size: 16px; /* MÁS GRANDE */
+  border-radius: 8px;
+  font-size: 20px; /* 🔥 Letra más grande */
   cursor: grab;
 }
 
 .position {
   width: 45px;
-  font-size: 16px;
+  font-size: 20px; /* 🔥 Letra más grande */
 }
 
 .logo-box {
-  width: 34px;
-  height: 34px;
+  width: 28px; /* Un poco más chico para encajar en el rectángulo más fino */
+  height: 28px;
   background: #1e293b;
   border-radius: 6px;
   display: flex;
@@ -117,12 +112,12 @@ body {
 }
 
 /* PANEL DERECHO */
-
 .right-panel {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin-top: 93px; /* 🔥 FIX: Alinea este panel con el inicio del rectángulo #1 */
 }
 
 .preview-box {
@@ -130,7 +125,7 @@ body {
   padding: 10px;
   border-radius: 16px;
   text-align: center;
-  margin-bottom: 10px; /* 🔥 menos espacio con botones */
+  margin-bottom: 10px;
 }
 
 .preview-box img {
@@ -140,23 +135,27 @@ body {
   border-radius: 12px;
 }
 
-/* 🔥 BOTONES MÁS GRANDES Y MENOS ESPACIO */
-
+/* 🔥 BOTONES: LETRA GRANDE Y MAYÚSCULAS */
 .share-buttons {
   display: flex;
   flex-direction: column;
-  gap: 8px; /* menos espacio entre botones */
+  gap: 8px;
 }
 
 .btn {
-  padding: 16px; /* MÁS ALTOS */
-  font-size: 16px; /* MÁS LEGIBLE */
+  padding: 16px;
+  font-size: 20px; /* 🔥 Letra más grande */
+  text-transform: uppercase; /* 🔥 Todo en MAYÚSCULA */
   border-radius: 12px;
   border: none;
   font-weight: bold;
   cursor: pointer;
   font-family: 'BourgeoisBold';
   transition: 0.2s;
+  text-decoration: none; /* Arregla el enlace de Discord */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .download {
@@ -172,13 +171,8 @@ body {
 .discord {
   background: #5865F2;
   color: white;
-  text-align: center;
-  text-decoration: none;
-  display: block;
 }
 
 .btn:hover {
-  transform: scale(1.03);
-}
   transform: scale(1.03);
 }
