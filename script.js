@@ -36,11 +36,16 @@ renderTeams();
 new Sortable(teamsUl, {
   animation: 150,
   onEnd: () => {
-    document.querySelectorAll("#teams li").forEach((item, i) => {
-      item.querySelector(".position").textContent = `#${i+1}`;
-    });
+    updatePositions();
+    generateImage();
   }
 });
+
+function updatePositions(){
+  document.querySelectorAll("#teams li").forEach((item, i) => {
+    item.querySelector(".position").textContent = `#${i+1}`;
+  });
+}
 
 const canvas = document.createElement("canvas");
 const ctx = canvas.getContext("2d");
@@ -62,7 +67,7 @@ async function generateImage() {
   const bg = await loadImage("background.png");
   ctx.drawImage(bg,0,0,canvas.width,canvas.height);
 
-  let name = document.getElementById("personName").value.slice(0,20);
+  let name = document.getElementById("personName").value.slice(0,25);
 
   if(name){
     ctx.fillStyle="#bbff00";
@@ -90,23 +95,25 @@ async function generateImage() {
     startY+=spacing;
   }
 
-  const imageData=canvas.toDataURL("image/png");
-  document.getElementById("previewImage").src=imageData;
-
-  const tweetText=`Estos son mis Power Rankings 🚀 @RocketStreet`;
-  const twitterUrl=`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
-  document.getElementById("twitterShare").href=twitterUrl;
+  document.getElementById("previewImage").src=canvas.toDataURL("image/png");
 }
 
-document.getElementById("generateBtn").addEventListener("click",generateImage);
+document.getElementById("personName").addEventListener("input",function(){
+  document.getElementById("charCounter").textContent=`${this.value.length} / 20`;
+  generateImage();
+});
 
-document.getElementById("downloadBtn").addEventListener("click",()=>{
+document.getElementById("shareBtn").addEventListener("click",()=>{
+  const imageData = canvas.toDataURL("image/png");
+
   const link=document.createElement("a");
   link.download="rocket-street-power-ranking.png";
-  link.href=canvas.toDataURL("image/png");
+  link.href=imageData;
   link.click();
+
+  const tweetText="Estos son mis Power Rankings 🚀 @RocketStreet";
+  const twitterUrl=`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+  window.open(twitterUrl, "_blank");
 });
 
-document.getElementById("personName").addEventListener("input",function(){
-  document.getElementById("charCounter").textContent=`${this.value.length} / 25`;
-});
+generateImage();
