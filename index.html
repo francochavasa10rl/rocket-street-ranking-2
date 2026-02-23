@@ -4,45 +4,55 @@
   <meta charset="UTF-8">
   <title>Rocket Street Ranking</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="preload" href="fonts/Bourgeois-Bold.ttf" as="font" type="font/ttf" crossorigin>
 </head>
 
 <body>
 
 <header class="site-header">
-  <img src="logo.png" class="site-logo">
-  <h2 class="site-title">ROCKET STREET</h2>
+  <div class="header-center">
+    <img src="logo.png" class="site-logo">
+    <h2 class="site-title">ROCKET STREET</h2>
+  </div>
 </header>
 
-<div class="main-container">
+<div class="main-layout">
 
   <!-- IZQUIERDA -->
   <div class="left-panel">
-    <h1>ARMA TU POWER RANKING</h1>
 
-    <div class="name-wrapper">
-      <input 
-        type="text" 
-        id="personName"
-        maxlength="25"
-        placeholder="TU NOMBRE"
-      >
-      <div id="charCounter">0/25</div>
-    </div>
+    <h1 class="section-title">ARMA TU POWER RANKING</h1>
+
+    <input type="text" id="personName" placeholder="TU NOMBRE" maxlength="25">
+    <div id="charCounter">0 / 25</div>
 
     <ul id="teams"></ul>
+
   </div>
 
   <!-- DERECHA -->
   <div class="right-panel">
-    <h3>Vista previa</h3>
-    <canvas id="previewCanvas" width="1080" height="1350"></canvas>
 
-    <div class="buttons">
-      <button id="downloadOnlyBtn">Descargar imagen</button>
-      <button id="downloadShareBtn">Descargar y Compartir en X</button>
-      <button id="discordBtn">Unirse al Discord</button>
+    <div class="preview-box">
+      <h3>Vista previa</h3>
+      <img id="previewImage">
     </div>
+
+    <div class="share-buttons">
+
+      <button id="downloadBtn" class="btn download">
+        Descargar imagen
+      </button>
+
+      <button id="shareBtn" class="btn twitter">
+        Descargar y Compartir en X
+      </button>
+
+      <a href="https://discord.gg/zWMaC4Qwak" target="_blank" class="btn discord">
+        Unirse al Discord
+      </a>
+
+    </div>
+
   </div>
 
 </div>
