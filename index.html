@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Rocket Street Ranking</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="preload" href="fonts/Bourgeois-Bold.ttf" as="font" type="font/ttf" crossorigin>
+</head>
+
+<body>
+
+<header class="site-header">
+  <img src="logo.png" class="site-logo">
+  <h2 class="site-title">ROCKET STREET</h2>
+</header>
+
+<div class="main-layout">
+
+  <!-- IZQUIERDA -->
+  <div class="left-panel">
+    <div id="ranking">
+      <h1>ARMA TU POWER RANKING</h1>
+
+      <input type="text" id="personName" placeholder="TU NOMBRE" maxlength="25">
+      <div id="charCounter">0 / 25</div>
+
+      <ul id="teams"></ul>
+
+      <div class="action-buttons">
+        <button id="generateBtn">GENERAR PREVIEW</button>
+        <button id="downloadBtn">DESCARGAR IMAGEN</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DERECHA -->
+  <div class="right-panel">
+
+    <div class="preview-box">
+      <h3>Vista previa</h3>
+      <img id="previewImage" alt="Preview">
+    </div>
+
+    <div class="share-buttons">
+      <a id="twitterShare" target="_blank" class="btn twitter">
+        Compartir en X
+      </a>
+
+      <a href="https://discord.gg/zWMaC4Qwak" target="_blank" class="btn discord">
+        Unirse al Discord
+      </a>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
