@@ -23,12 +23,11 @@ body {
     margin: 0;
     padding: 0;
     font-family: var(--font-main);
-    background-color: var(--rs-black);
-    background-image: radial-gradient(circle at top right, #161b22, #05070a);
-    background-attachment: fixed; /* FIX: Fondo no cambia al scrollear */
+    background-color: #000000; /* negro puro */
     color: white;
     min-height: 100vh;
     overflow-x: hidden;
+    background-attatchment: fixed;
 }
 
 /* 3. HEADER */
