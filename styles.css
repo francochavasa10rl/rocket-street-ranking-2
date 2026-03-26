@@ -5,7 +5,7 @@
 }
 
 :root {
-    --rs-black: #05070a;      /* Fondo base de la web */
+    --rs-black: #000000;      /* Fondo base de la web */
     --rs-dark-grey: #0d1117;  /* Paneles secundarios */
     --rs-panel: #161b22;     /* Fondo de los rectángulos de la lista */
     --rs-neon: #bbff00;      /* Verde neón / Lima */
