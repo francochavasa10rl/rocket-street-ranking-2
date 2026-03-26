@@ -1,20 +1,20 @@
 const teamsData = [
-  { name:"TSM", logo:"logos/tsm.png" },
-  { name:"FURIA ESPORTS", logo:"logos/furia.png" },
-  { name:"SHOPIFY REBELLION", logo:"logos/shopify.png" },
-  { name:"NRG ESPORTS", logo:"logos/nrg.png" },
-  { name:"TEAM VITALITY", logo:"logos/vitality.png" },
-  { name:"KARMINE CORP", logo:"logos/kc.png" },
-  { name:"TEAM FALCONS", logo:"logos/falcons.png" },
-  { name:"SPACESTATION GAMING", logo:"logos/ssg.png" },
-  { name:"GENTLE MATES", logo:"logos/gentlemates.png" },
-  { name:"PWR", logo:"logos/pwr.png" },
-  { name:"TWISTED MINDS", logo:"logos/twisted.png" },
+  { name:"FURIA", logo:"logos/furia.png" },
   { name:"MIBR", logo:"logos/mibr.png" },
-  { name:"GEEKAY ESPORTS", logo:"logos/geekay.png" },
-  { name:"NINJAS IN PYJAMAS", logo:"logos/nip.png" },
-  { name:"VIRTUS.PRO", logo:"logos/vp.png" },
-  { name:"FIVE FEARS", logo:"logos/5f.png" }
+  { name:"TEAM SECRET", logo:"logos/secret.png" },
+  { name:"BS+ COMPETITION", logo:"logos/bs.png" },
+  { name:"BIGODES", logo:"logos/bigodes.png" },
+  { name:"NUTORIOUS", logo:"logos/notorious.png" },
+  { name:"ENOSIS", logo:"logos/enosis.png" },
+  { name:"NOVADRIFT", logo:"logos/rocket.png" },
+  { name:"0 ESFORÇO FC", logo:"logos/rocket.png" },
+  { name:"OVERLOOKED", logo:"logos/overlooked.png" },
+  { name:"SANGRES", logo:"logos/rocket.png" },
+  { name:"W KEY", logo:"logos/rocket.png" },
+  { name:"DREAM ESPORTS", logo:"logos/dream.png" },
+  { name:"CARIE TEAM", logo:"logos/rocket.png" },
+  { name:"NOVA LEGION", logo:"logos/novalegion.png" },
+  { name:"DEFIED", logo:"logos/rocket.png" }
 ];
 
 const teamsUl = document.getElementById("teams");
