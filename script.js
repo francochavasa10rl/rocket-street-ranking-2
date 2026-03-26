@@ -69,7 +69,7 @@ async function generateImage() {
 
   let name = document.getElementById("personName").value.slice(0,25);
   if(name){
-    ctx.fillStyle="ff4200";
+    ctx.fillStyle="#ff4200";
     ctx.textAlign="center";
     ctx.font="bold 60px BourgeoisBold";
     ctx.fillText(name.toUpperCase(),538,255);
